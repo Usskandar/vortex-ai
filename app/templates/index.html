@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vortex AI — Trading Signal Generator</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Vortex AI</h1>
+    <p class="subtitle">Your professional trading signal assistant</p>
+
+    <form method="post">
+      <label>Current Market Price:</label><br>
+      <input type="text" name="price" placeholder="e.g. 7.689" required><br>
+      <button type="submit">Generate Report</button>
+    </form>
+
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if report %}
+      <div class="report">
+        {% for key, val in report.items() %}
+          {% if key != 'Recommendations' %}
+            <p><strong>{{ key }}:</strong> {{ val }}</p>
+          {% else %}
+            <p><strong>Recommendations:</strong></p>
+            <ol>
+              {% for tip in val %}
+                <li>{{ tip }}</li>
+              {% endfor %}
+            </ol>
+          {% endif %}
+        {% endfor %}
+        <p><em>For support: isskandarlali@gmail.com</em></p>
+      </div>
+    {% endif %}
+
+    <footer>
+      © 2025 Vortex AI — Developed by Isskandar Lalali | Contact: isskandarlali@gmail.com
+    </footer>
+  </div>
+</body>
+</html>
